@@ -82,9 +82,20 @@ public class Laud {
 
     public int koguVäärtus(List<Kaart> kaardid){
         int summa = 0;
+        int ässad = 0;
+
         for (Kaart kaart : kaardid) {
             summa += kaart.getVäärtus();
+            if (kaart.getTähis().equals("A")) {
+                ässad++;
+            }
         }
+
+        while (summa > 21 && ässad > 0) {
+            summa -=10;
+            ässad--;
+        }
+
         return summa;
     }
 
@@ -121,11 +132,9 @@ public class Laud {
 
         } else if (valik == 2) {
             System.out.println("\n".repeat(10));
-            if (dealer(maja, mängija)){
-                System.out.println("\n".repeat(10));
-                System.out.println("Dealer võidab!");
+            boolean dealerVõidab = dealer(maja, mängija);
+
                 return true;
-            }
         } else {
             System.out.println("\n".repeat(10));
             System.out.println("Arusaamatu tegevus! Proovi uuesti!");
@@ -146,17 +155,37 @@ public class Laud {
         System.out.println("\nSinu kaardid:");
         mängija.väljastaKäsi();
 
-        System.out.println(koguVäärtus(maja.getKäsi()));
+        int dealerVäärtus = koguVäärtus(maja.getKäsi());
+        int mängijaVäärtus = koguVäärtus(mängija.getKäsi());
 
-        while (koguVäärtus(maja.getKäsi()) <= 17){
+
+
+        while (dealerVäärtus < 17){
             System.out.println("Dealer võtab kaardi juurde.");
-            maja.lisaKaart(pakk.getFirst());
-            pakk.removeFirst();
-            System.out.println("\n".repeat(10));
+            maja.lisaKaart(pakk.get(0));
+            pakk.remove(0);
+            dealerVäärtus = koguVäärtus(maja.getKäsi());
+            System.out.println("\n Dealeri kaardid:");
+            maja.peidetudKäsi(false);
+            System.out.println("\nSinu kaardid:");
+            mängija.väljastaKäsi();
+
 
         }
 
-        return true;
+        if (dealerVäärtus > 21) {
+            System.out.println("Dealer bust, võitsite mängu!");
+            return false;
+        } else if (dealerVäärtus > mängijaVäärtus) {
+            System.out.println("Dealer võidab.");
+            return true;
+        } else if (dealerVäärtus < mängijaVäärtus) {
+            System.out.println("Palju õnne, võitsite mängu!");
+            return false;
+        } else {
+            System.out.println("Viik");
+            return false;
+        }
     }
 
 

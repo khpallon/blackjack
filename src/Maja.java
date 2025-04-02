@@ -21,15 +21,21 @@ public class Maja {
 
     public void peidetudKäsi(boolean algus) {
         System.out.print("| ");
-        for (int i = 0; i < 2; i++) {
-            if (algus && i == 1) {
-                System.out.println("XX" + " | ");
-            } else {
-                System.out.print(käsi.get(i) + " | ");
+        if(algus) {
+
+            for (int i = 0; i < 2 && i < käsi.size(); i++) {
+                if (i == 1) {
+                    System.out.print("XX" + " | ");
+                } else {
+                    System.out.print(käsi.get(i) + " | ");
+                }
             }
-
+        } else {
+            for (Kaart kaart : käsi) {
+                System.out.print(kaart + " | ");
+            }
         }
-
+        System.out.println();
     }
 
 
