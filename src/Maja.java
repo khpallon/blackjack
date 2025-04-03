@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Maja klass, kus tegeleme Dealeri kaartidega
+ */
+
 public class Maja {
     private List<Kaart> käsi = new ArrayList<>();
-
 
     public void setKäsi(List<Kaart> käsi) {
         this.käsi = käsi;
@@ -17,12 +20,15 @@ public class Maja {
         käsi.add(kaart);
     }
 
-    // Dealeri algne käsi, kus teine kaart on mängija eest peidetud
+    /**
+     * Väljastame Dealeri kaardid ekraanile nii, et esimene kaart on nähtav ning teine peidetud
+     * @param peida Boolean väärtus, millega kontrollime, kas on vaja teist kaarti peita või mitte
+     */
 
-    public void peidetudKäsi(boolean algus) {
+    public void väljastaKäsi(boolean peida) {
         System.out.print("| ");
-        if(algus) {
 
+        if(peida) {
             for (int i = 0; i < 2 && i < käsi.size(); i++) {
                 if (i == 1) {
                     System.out.print("XX" + " | ");

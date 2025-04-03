@@ -1,18 +1,17 @@
+/**
+ * Mängu kaardi klass, kus väärtustame ja tähistame kaardid
+ */
+
 public class Kaart{
     
-    private String tähis;
-    private String mast;
-    private int väärtus;
+    private String tähis;   // "K", "A", "Q", 10, 9, jne
+    private String mast;    // "♠", "♥", "♣", "♦"
+    private int väärtus;    // Kaardi numbriline väärtus
 
     public Kaart(String tähis, String mast){
         this.tähis = tähis;
         this.mast = mast;
         this.väärtus = arvutaVäärtus();
-    }
-
-
-    public String getMast() {
-        return mast;
     }
 
     public String getTähis() {
@@ -28,9 +27,14 @@ public class Kaart{
     }
 
 
-    // Arvutab kaardi väärtuse
+    /**
+     * Arvutame kaardi numbrilise väärtuse
+     * @return Tagastame saadud numbri
+     */
 
     public int arvutaVäärtus(){
+
+        // try ja catchiga kontrollime, kas tegu on tähe või numbriga
 
         try{
             return Integer.parseInt(tähis);
