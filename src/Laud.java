@@ -1,3 +1,5 @@
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Laud {
      * @param mängija   Mängija
      */
     
-    public void mängi(Maja maja, Mängija mängija){
+    public void mängi(Maja maja, Mängija mängija) throws IOException, ValeSisendErind {
 
         boolean lõpp = false;
 
@@ -45,19 +47,44 @@ public class Laud {
 
             if (lõpp){
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("\nKas soovite uuesti mängida?");
-                System.out.println("1 - Mängi uuesti ; 2 - Lahku");
-                System.out.println("*".repeat(30));
-                int valik = scanner.nextInt();
-                switch (valik){
-                    case 1:
-                        System.out.println("\n".repeat(10));
-                        mängi(maja, mängija);
-                    case 2: System.exit(0);
+
+                while (true){
+                    System.out.println("\nKas soovite uuesti mängida?");
+                    System.out.println("1 - Mängi uuesti ; 2 - Lahku");
+                    System.out.println("*".repeat(30));
+                    int valik = scanner.nextInt();
+                    try {
+                        switch (valik){
+                            case 1:
+                                System.out.println("\n".repeat(10));
+                                mängi(maja, mängija);
+                                break;
+                            case 2: {
+                                try (BufferedWriter bw = new BufferedWriter (new OutputStreamWriter (new FileOutputStream("kaardid.txt", false), StandardCharsets.UTF_8))) {
+                                    StringBuilder majakaardid = new StringBuilder("| ");
+                                    StringBuilder mängijakaardid = new StringBuilder("| ");
+                                    for (Kaart kaart : maja.getKäsi()) {
+                                        majakaardid.append(kaart).append(" | ");
+                                    }
+                                    for (Kaart kaart : mängija.getKäsi()) {
+                                        mängijakaardid.append(kaart).append(" | ");
+                                    }
+                                    bw.write("Dealeri kaardid: \n");
+                                    bw.write(majakaardid + "\n");
+                                    bw.write("\nSinu kaardid:" + "\n");
+                                    bw.write(mängijakaardid.toString());
+                                }
+                                return;
+                            } default: {
+                                throw new ValeSisendErind("Vale sisend! Proovige uuesti.\n");
+                            }
+                        }
+                    } catch (ValeSisendErind e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
         }
-
     }
 
     /**
@@ -135,7 +162,7 @@ public class Laud {
      * @return  Tagastame boolean väärtuse, et kas mängu lõpetada või mitte
      */
 
-    public boolean protsess(Maja maja, Mängija mängija, boolean peida){
+    public boolean protsess(Maja maja, Mängija mängija, boolean peida) throws ValeSisendErind{
         Scanner scanner = new Scanner(System.in);
         System.out.println("*".repeat(30));
         System.out.println("Dealeri kaardid: ");
@@ -173,21 +200,27 @@ public class Laud {
         System.out.println("*".repeat(30));
         int valik = scanner.nextInt();
 
-        if (valik == 1){    // Lisame kaardi mängijale juurde
-            mängija.lisaKaart(pakk.getFirst());
-            pakk.removeFirst();
-            System.out.println("\n".repeat(10));
-            System.out.println("Dealer annab sulle kaardi juurde.");
+        try {
+            if (valik == 1){    // Lisame kaardi mängijale juurde
+                mängija.lisaKaart(pakk.getFirst());
+                pakk.removeFirst();
+                System.out.println("\n".repeat(10));
+                System.out.println("Dealer annab sulle kaardi juurde.");
 
-        } else if (valik == 2) {    // Mängija ei võta kaardi juurde ning Dealer lõpetab oma käe ära
+            } else if (valik == 2) {    // Mängija ei võta kaardi juurde ning Dealer lõpetab oma käe ära
+                System.out.println("\n".repeat(10));
+                dealer(maja, mängija);
+                return true;
+            } else {    // Kui on vale sisend
+                throw new ValeSisendErind("Vale sisend! Proovige uuesti.\n");
+            }
+        } catch (ValeSisendErind e) {
             System.out.println("\n".repeat(10));
-            dealer(maja, mängija);
-            return true;
-        } else {    // Kui on vale sisend
-            System.out.println("\n".repeat(10));
-            System.out.println("Arusaamatu tegevus! Proovi uuesti!");
+            System.out.println(e.getMessage());
             protsess(maja, mängija, peida);
         }
+
+
 
         return false;
     }
