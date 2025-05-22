@@ -137,7 +137,7 @@ public class Main extends Application {
         jätaNupp.setOnAction(e -> jätaKäik());
 
 
-
+        // paigutus
         VBox diilerBox = new VBox(new Label("Dealer:"), diileriAla);
         VBox.setVgrow(diileriAla, Priority.ALWAYS);
         diilerBox.setMaxWidth(Double.MAX_VALUE);
@@ -166,6 +166,7 @@ public class Main extends Application {
         mänguJuht.setCenter(kaardidBox);
         mänguJuht.setBottom(tegevusnupud);
 
+        // klaviatuuri nupuvajutused
         mänguStseen = new Scene(mänguJuht, 400, 250);
         mänguStseen.setOnKeyPressed(e -> tryCatch(() -> {
             if (e.getCode() == KeyCode.DIGIT1) {
@@ -279,7 +280,7 @@ public class Main extends Application {
 
         tulemusDialoog.showAndWait();
 
-
+        // Kirjutab faili kaardid.txt diileri ja mängija kaardid.
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("kaardid.txt", false), StandardCharsets.UTF_8))) {
             bw.write("Dealeri kaardid:\n" + laud.getStringKäsi(maja.getKäsi(), false) + "\n");
@@ -369,7 +370,7 @@ public class Main extends Application {
     }
 
     /**
-     * Peameetod, mis käivitab JavaFX rakenduse.
+     * Peameetod, mis käivitab rakenduse.
      * @param args
      */
     public static void main(String[] args) {
