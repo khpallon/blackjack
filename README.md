@@ -1,4 +1,4 @@
-**OOP Esimene rühmatöö - Blackjack kaardimäng**
+**OOP Teine rühmatöö - Blackjack kaardimäng JavaFX**
 
 ***AUTORID***
 
@@ -7,59 +7,56 @@
 
 ***KIRJELDUS***
 
-Meie valisime enda projektiks luua lihtsa versiooni Blackjack kaardimängust. 
-Hetkel mäng töötab ilma rahalise panuseta ning mängus on mängijal ainult võimalik, kas kaardi juurde võtta või jätta.
-Samuti alguses on võimalik saada infot, et kuidas mäng käib. 
+Programmil on 6 klassi: `Mängija`, `Dealer`, `Kaart`, `Laud`, `Main` ja `ValeSisendErind`.
 
-Programm töötab enamasti while loopis ning põhineb kastuaja sisendile. Igas olukorras on võimalik kasutajal sisendi käigus mõjutada edasist tegevust.
-Iga sisendi käigus väljastab programm ekraanile, võimalikud sisendid, millega on võimalik mängu jätkata või lõpetada.
+`Mängija` klassis hoiustame Mängija ehk Sinu kaarte.
 
-***KLASSID JA MEETODID***
-
-Programmil on 5 klassi: `Mängija`, `Dealer`, `Kaart`, `Laud` ja `Main`.
-
-`Mängija` klassis hoiustame Mängija ehk Sinu kaarte ning samuti väljastame need ekraanile.
-
-`Dealer` klassis hoiustame Dealeri kaarte ning samuti väljastame need ekraanile.
+`Dealer` klassis hoiustame Dealeri kaarte.
 
 `Kaart` klassis määrame kaardi tähise, masti ning samuti väärtuse.
 
-`Laud` klassis toimub kogu mängu põhitöö. Seal programm tegeleb kaardi segamisega, kaartide juurde andmisega, Mängija sisendiga ning Dealeriga.
+`Laud` Seal programm tegeleb kaardi segamisega, kaartide juurde andmisega, ning Dealeriga.
 
 Siin mõned olulisemad meetodid sellest klassist:
 
-`protsess(Maja, Mängija, boolean)` -> Siin kontrollime mängija sisendit ning tegutseme vastavalt\
-`dealer(Maja, Mängija)` -> Dealer võtab seni kaua kaarte, kuniks võidab või kaotab mängu. Samuti on ka viik võiamlus.\
-`koguVäärtus(List<Kaart>)` -> Arvutab kaartide kogusumma ning tagastab selle
-`mängi(Maja, Mängija)` -> Teeb mängule ettevalmistusi ning alustab mängu loopiga.
+`koguVäärtus(List<Kaart> kaardid)` -> Arvutab kaartide kogusumma ning tagastab selle.
+`dealeriKord(Maja maja, Mängija mängija)` -> Dealer automaatselt kogub kaarte kuniks jõuab väärtuseni 17 või Bustib
+`getStringKäsi(List<Kaart> käsi, boolean peidaTeine)` -> Tagastab käe tekstina, peites soovi korral diileri teise kaardi.
 
-`Main` klassis loome kõik klassid, käivitame mängu ning samuti anname mängijale võimaluse saada infot, et kuidas mäng käib.
+`Main` klassis loome klassid, käivitame mängu, tegeleb mängu protsessiga ning samuti anname mängijale võimaluse saada infot, et kuidas mäng käib ja laseb vaadata eelmise mängu tulemust.
 
+Siin mõned olulisemad meetodid sellest klassist:
+
+`ehitaMenüüStseen()` -> Koostab mängu menüü kuvapildi kasutades JavaFXi
+`ehitaMänguStseen()`-> Koostab mängu kuvapildi kasutades JavaFXi
+`uusMäng()` -> Algatab uue mängu. Segab paki ja jagab algkaardid.
+`võtaKaart()` -> Käivitab mängija kaardi tõmbamise ja kontrollib tulemusi.
+`jätaKäik()`-> Käivitab diileri korra ja algatab tulemuse kuvamist.
+`näitaTulemus()` -> Kuvab mängu tulemuse ning pakub valikut uuesti mängida või menüüsse naasta.
 
 ***TEGEMISE PROTSESS***
 
-Töö ja suhtlus toimus meil kõik veebi vahendusel. Ajurünnakud tehes otsustasime, et teeksime lihtsa versiooni Blackjack kaardimängust. 
-Avastasime, et tööjaotust oli raske teha, kuna projekt iseenesest tundus väga lühike ja lihtne. Seega otsustasime, et Karl alustab ning Mihkel lõpetab töö.
-Kõik rühmaliikmed osalesid töö tegemises ning probleeme meil ei tekkinud. Orienteeruvalt läks meil umbes 15h, et töö valmis saada. Kasutasime GitHub'i, et koodi jagada ning uuendada.
-
+Töö ja suhtlus toimus meil kõik veebi vahendusel. Otsustasime, et arendame edasi oma esimest projekti.
+Seekord oli tööjaotust palju kergem teha kui eelmine kord. Otsustasime, et Karl tegeleb faili lugemise ning erinditega ning Mihkel teeb mängu ümber JavaFXis.
+Kõik rühmaliikmed osalesid töö tegemises ning probleeme meil ei tekkinud. Orienteeruvalt läks meil umbes 20h, et töö valmis saada. Kasutasime GitHub'i, et koodi jagada ning uuendada.
 
 ***PANUS***
 
-Kuna tööd oli suhteliselt raske jaotada siis otsustasime, et Karl alustab kirjutamisega ning Mihkel lõpetab. Seega Karl jõudis ise teha kõik klassid ning neid arendada ning Mihkel lõpetas ja ka parandas neid.
+Kuna tegime esimeseks projektiks blackjacki algsema versiooni, siis ei olnud vaja muuta klasse Kaart.java, Maja.java, Mängija.java
+Karl tegeles erindite ning failist lugemisega
+Mihkel tegi mängu JavaFX graafilise kasutajaliidese abil ümber ning parandas mida oli vaja.
 
-Karl - `Kaart`, `Maja`, `Mängija`, `Laud`, `Main`
-Mihkel - `Laud`, `Maja`
-
-Karl tegeles enamasti taaskasutatavate meetotidega ning Mängija väljundiga .\
-Mihkel tegeles Dealeri väljundiga ja arvutustega.
+Karl - `Laud`, `Main`, `ValeSisendErind`
+Mihkel - `Laud`, `Main`
 
 ***HINNANG***
 
-Meie arvates tuli programm väga hästi välja. Mängu on võimalik lõpmatuseni mängida ning mingeid olulisemaid vigu pole me avastanud.
-Ainuke asi, mida oleks saanud paremini teha, oleks olnud teksti väljund, kuid kuna hetkel ei soovitud graafilist väljundit siis otsustasime sellega edasi minna.
+Meie arvates tuli programm väga hästi välja. Ühtkit suurt viga ei ole me leidnud. 
+Ainukeseks arenduskohaks on see, et programmi graafilise väljundi välimust oleks saanud veidi ilusamaks teha kuid oleme enda praeguse tulemusega ka väga rahul.
 5 palli süsteemis paneksime meie 4.9/5
 
 ***TESTIMINE***
 
-Hetkel oleme programmi testinud kasutades `System.out.println` käske, et veenduda programm väljastab õigeid väljundeid ning jõuab sinna kuhu oleks vaja jõuda.
-Omakorda oleme ka mängu mitu korda läbi mänginud, et olla kindlad iga juhsuliku kaardi kombinatsiooni võimalustega ning vastavalt nende väljunditega.
+Mängu testisime peamiselt seda mängides.
+Oleme mängu mitu korda läbi mänginud, et olla kindlad iga juhsuliku kaardi kombinatsiooni võimalustega ning vastavalt nende väljunditega.
+Lasime ka mängu mängida mõnel sõbral, kes aitas probleemikohte tuvastada.
