@@ -1,4 +1,4 @@
-**OOP Teine rühmatöö - Blackjack kaardimäng JavaFX**
+**OOP Teine rühmatöö - Blackjack kaardimäng**
 
 ***AUTORID***
 
