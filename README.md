@@ -27,12 +27,12 @@ Siin mõned olulisemad meetodid sellest klassist:
 
 Siin mõned olulisemad meetodid sellest klassist:
 
-`ehitaMenüüStseen()` -> Koostab mängu menüü kuvapildi kasutades JavaFXi
-`ehitaMänguStseen()`-> Koostab mängu kuvapildi kasutades JavaFXi
-`uusMäng()` -> Algatab uue mängu. Segab paki ja jagab algkaardid.
-`võtaKaart()` -> Käivitab mängija kaardi tõmbamise ja kontrollib tulemusi.
-`jätaKäik()`-> Käivitab diileri korra ja algatab tulemuse kuvamist.
-`näitaTulemus()` -> Kuvab mängu tulemuse ning pakub valikut uuesti mängida või menüüsse naasta.
+`ehitaMenüüStseen()` -> Koostab mängu menüü kuvapildi kasutades JavaFXi\
+`ehitaMänguStseen()`-> Koostab mängu kuvapildi kasutades JavaFXi\
+`uusMäng()` -> Algatab uue mängu. Segab paki ja jagab algkaardid.\
+`võtaKaart()` -> Käivitab mängija kaardi tõmbamise ja kontrollib tulemusi.\
+`jätaKäik()`-> Käivitab diileri korra ja algatab tulemuse kuvamist.\
+`näitaTulemus()` -> Kuvab mängu tulemuse ning pakub valikut uuesti mängida või menüüsse naasta.\
 
 ***TEGEMISE PROTSESS***
 
