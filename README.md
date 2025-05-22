@@ -32,7 +32,7 @@ Siin mõned olulisemad meetodid sellest klassist:
 `uusMäng()` -> Algatab uue mängu. Segab paki ja jagab algkaardid.\
 `võtaKaart()` -> Käivitab mängija kaardi tõmbamise ja kontrollib tulemusi.\
 `jätaKäik()`-> Käivitab diileri korra ja algatab tulemuse kuvamist.\
-`näitaTulemus()` -> Kuvab mängu tulemuse ning pakub valikut uuesti mängida või menüüsse naasta.\
+`näitaTulemus()` -> Kuvab mängu tulemuse ning pakub valikut uuesti mängida või menüüsse naasta.
 
 ***TEGEMISE PROTSESS***
 
