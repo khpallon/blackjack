@@ -241,7 +241,7 @@ public class Laud {
     }
 
     /**
-     * Diileri automaatkäik: jagab kaarte seni, kuni väärtus ≥17 või bustib.
+     * Diileri jagab kaarte seni, kuni väärtus ≥17 või bustib.
      */
     public void dealeriKord(Maja maja, Mängija mängija) {
         int dealerVäärtus = koguVäärtus(maja.getKäsi());
