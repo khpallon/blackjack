@@ -19,8 +19,8 @@ Programmil on 6 klassi: `Mängija`, `Dealer`, `Kaart`, `Laud`, `Main` ja `ValeSi
 
 Siin mõned olulisemad meetodid sellest klassist:
 
-`koguVäärtus(List<Kaart> kaardid)` -> Arvutab kaartide kogusumma ning tagastab selle.
-`dealeriKord(Maja maja, Mängija mängija)` -> Dealer automaatselt kogub kaarte kuniks jõuab väärtuseni 17 või Bustib
+`koguVäärtus(List<Kaart> kaardid)` -> Arvutab kaartide kogusumma ning tagastab selle.\
+`dealeriKord(Maja maja, Mängija mängija)` -> Dealer automaatselt kogub kaarte kuniks jõuab väärtuseni 17 või Bustib\
 `getStringKäsi(List<Kaart> käsi, boolean peidaTeine)` -> Tagastab käe tekstina, peites soovi korral diileri teise kaardi.
 
 `Main` klassis loome klassid, käivitame mängu, tegeleb mängu protsessiga ning samuti anname mängijale võimaluse saada infot, et kuidas mäng käib ja laseb vaadata eelmise mängu tulemust.
@@ -46,7 +46,7 @@ Kuna tegime esimeseks projektiks blackjacki algsema versiooni, siis ei olnud vaj
 Karl tegeles erindite ning failist lugemisega
 Mihkel tegi mängu JavaFX graafilise kasutajaliidese abil ümber ning parandas mida oli vaja.
 
-Karl - `Laud`, `Main`, `ValeSisendErind`
+Karl - `Laud`, `Main`, `ValeSisendErind`\
 Mihkel - `Laud`, `Main`
 
 ***HINNANG***
