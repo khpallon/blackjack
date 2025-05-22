@@ -137,7 +137,7 @@ public class Main extends Application {
         jätaNupp.setOnAction(e -> jätaKäik());
 
 
-        // paigutus
+
         VBox diilerBox = new VBox(new Label("Dealer:"), diileriAla);
         VBox.setVgrow(diileriAla, Priority.ALWAYS);
         diilerBox.setMaxWidth(Double.MAX_VALUE);
@@ -166,7 +166,6 @@ public class Main extends Application {
         mänguJuht.setCenter(kaardidBox);
         mänguJuht.setBottom(tegevusnupud);
 
-        // klaviatuuri nupuvajutused
         mänguStseen = new Scene(mänguJuht, 400, 250);
         mänguStseen.setOnKeyPressed(e -> tryCatch(() -> {
             if (e.getCode() == KeyCode.DIGIT1) {
@@ -236,6 +235,8 @@ public class Main extends Application {
         if (laud.koguVäärtus(mängija.getKäsi()) < 21) {
             mängija.lisaKaart(laud.tõmbaKaart());
             värskendaVaateid(true);
+
+
             if (laud.koguVäärtus(mängija.getKäsi()) >= 21 || laud.koguVäärtus(mängija.getKäsi()) == 21 ) {
                 jätaKäik();
             }
@@ -277,10 +278,10 @@ public class Main extends Application {
         Button ok = (Button) tulemusDialoog.getDialogPane().lookupButton(ButtonType.OK);
         ok.setText("OK (Enter)");
         ok.setDefaultButton(true);
-
         tulemusDialoog.showAndWait();
 
-        // Kirjutab faili kaardid.txt diileri ja mängija kaardid.
+
+        // Salvestab eelmise mängu tulemuse
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("kaardid.txt", false), StandardCharsets.UTF_8))) {
             bw.write("Dealeri kaardid:\n" + laud.getStringKäsi(maja.getKäsi(), false) + "\n");
@@ -331,7 +332,7 @@ public class Main extends Application {
                 "Kui tegu on kaardiga millel on täht ehk siis 'J', 'Q' ja 'K' siis selle väärtuseks on 10.",
                 "'A' kaardiga on erand. Selle algne väärtus on 11, kuid kui mängu käigus ületad summat 21 siis kaardi väärtus läheb 1 peale.",
                 "Mängu eesmärk on saada suurem kaartide väärtus, kui Dealeril. Maksimum lubatud väärtus on 21 ehk Blackjack. Kuid, kui seda ületad siis oled automaatselt kaotanud.",
-                "Samuti, kui sul on väiksem väärtus, kui Dealeril siis oled samuti kaotanud.",
+                "Samuti, kui sul on väiksem väärtus, kui Dealeril siis oled ka kaotanud.",
                 "Mängijal on mängu käigus kaks valikut: Kas ühe kaardi juurde võtta või jätta ning lasta Dealeril lõpuni mängida.",
                 "Mängija saab senikaua kaarte juurde võtta, kuniks ta ei ole ületanud 21 summa.",
                 "Märkus! Dealer võtab kaarte juurde senikaua, kuniks ta saab kaartide summaks kokku 17.",
@@ -370,7 +371,7 @@ public class Main extends Application {
     }
 
     /**
-     * Peameetod, mis käivitab rakenduse.
+     * Peameetod, mis käivitab JavaFX rakenduse.
      * @param args
      */
     public static void main(String[] args) {
